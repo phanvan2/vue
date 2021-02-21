@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <style>
+        #box{
+          background-color:aqua ; 
+          width: 400px;
+          height: 400px;  
+          position:  relative;
+        }
+        .box-2{
+            background-color:#f00 ; 
+            width: 100px; 
+            height: 100px ; 
+            position: absolute;
+            right:  0 ;
+            top: 0 ; 
+        }
+    </style>
+</head>
+<body>
+    <div id="event1">
+        <p>Counter: {{ dem }} </p>
+        <button v-on:click="counter">tăng</button>
+        <div id="box" v-on:mousemove="getClientXY($event)">
+            <p>{{ ClientX}} </p>
+            <p>{{ ClientY}} </p>
+
+            <div class="box-2" v-on:mousemove.stop="mousemose_child">
+
+            </div>
+        </div>
+        <form action="/server.php" v-on:submit.prevent="Submit_form">
+            <label for="">Name</label>
+            <input type="text" placeholder="Type your name here" name="user"> </br>
+            <label for="">Email</label>
+            <input type="email" placeholder="Type your email here" name="email"> </br>
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+</body>
+    <script src="main.js"></script>
+</html>

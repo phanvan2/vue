@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <style>
+        .btn{
+            margin-top: 10px;
+            border: 2px solid black;
+            width: 150px ;
+            height: 30px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .register, .login{
+            width: 600px;
+            border: 1px solid #00f;
+            margin-top: 10px ;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Conditions</h3>
+    <div id="app">
+        <p v-if='true'> Kết quá đúng</p>
+        <div class="btn" v-on:click="changeTab('login')">Đăng nhập</div>
+        <div class="btn" v-on:click="changeTab('register')">Đăng ký </div>
+        <div class="login" v-if="tabSelected === 'login'">
+            <h4>Form đăng nhập</h4>
+            <form action="" >
+                <input type="text" placeholder=" user"> 
+                <input type="password" placeholder="password">
+            </form>
+        </div>
+        <div class="register" v-else >
+            <h4>Form đăng ký</h4>
+            <form action="" >
+                <input type="text" placeholder="user">
+                <input type="password" placeholder="password">
+                <input type="password" placeholder="Re-password">
+            </form> 
+        </div>
+        <h3>Loop</h3>
+        <ul>
+            <li v-for="item , index in list" v-bind:key="index">
+                {{ item.title}} -
+                {{ item.detail}}
+              
+            </li>
+        </ul>
+        <ul>
+            <li v-for="value , key in list_diem ">
+                {{key }}: {{value}}
+            </li>
+        </ul>
+        
+        <h3>Note </h3>
+        <ul>
+            <li v-for="user in userActive" >
+                {{ user.email }} 
+            </li>
+        </ul>
+    </div>
+
+   
+</body>
+<script> 
+    var condtion  = new Vue({
+        el : '#app' , 
+        data: {
+            tabSelected : 'register' , 
+            list : [
+                {
+                    "title" : 1 , 
+                    "detail" : "Hoc lap trinh voi Vue js" ,
+            
+                }, 
+                {
+                    "title" : 2 , 
+                    "detail" : "Hoc lap trinh voi Vue js" ,
+            
+                }, 
+                {
+                    "title" : 3 , 
+                    "detail" : "Hoc lap trinh voi Vue js" ,
+            
+                }, 
+                {
+                    "title" : 4 , 
+                    "detail" : "Hoc lap trinh voi Vue js" ,
+            
+                }, 
+            ],
+            list_diem: {
+                
+                    math : 9.0 , 
+                    eng : 7.9, 
+                    java : 8.0,
+                
+             
+
+            },
+            list_note: [
+                { email : 'Phan@mail.com' , isActive : true}  , 
+                { email : 'Phan@mail.com' , isActive : false}  , 
+                { email : 'Phan@mail.com' , isActive : false}  , 
+                { email : 'Phan@mail.com' , isActive : true}  , 
+                { email : 'Phan@mail.com' , isActive : false}  , 
+                { email : 'Phan@mail.com' , isActive : true}  , 
+                { email : 'Phan@mail.com' , isActive : false}  , 
+            ]
+
+        },
+        methods:{
+            changeTab: function(select){
+                this.tabSelected = select ; 
+            }
+        },
+        computed: {
+            userActive(){
+                return this.list_note.filter(function(u) {
+                    return u.isActive  
+                }) 
+            }
+        }
+
+    })
+</script>
+</html>

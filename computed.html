@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compubted</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+</head>
+<body>
+    <h3>Computed</h3>
+    <div id="app">
+        <button v-on:click="a++">A + 1 </button>
+        <button v-on:click="b++">B + 1 </button>
+        <p>A + number = {{ addA }} </p>
+        <p>B + number = {{ addB }} </p>
+    </div>
+</body>
+<script>
+    var VueInstance = new Vue({
+        el: '#app' , 
+        data: {
+            a : 0, 
+            b : 0 , 
+            number : 4 ,
+        },
+        methods:{
+            // addA(){
+            //     console.log("Add A") ; 
+            //     return this.a + this.number ; 
+            // },
+            // addB(){
+            //     console.log("Add B" ) ; 
+            //     return this.b + this.number ; 
+            // },
+        },
+        computed: {
+            addA(){
+                console.log("Add A") ; 
+                return this.a + this.number ; 
+            },
+            addB(){
+                console.log("Add B") ; 
+                return this.b + this.number ; 
+            },
+        }
+    })
+</script>
+</html>

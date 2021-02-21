@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class-style-bindings</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <style>
+        .demo{
+            background-color: #00ff00 ; 
+            width: 300px ;
+            height: 200px ;
+
+        }
+        .demo.active{
+            background-color: #0000ff ; 
+
+        }
+        .demo.error{
+            background-color: #ff0000 ; 
+        }
+    </style>
+</head>
+<body>
+    <h3>Class-style-binding</h3>
+    <div id="binding">
+        <p>Xin Chào {{ user }} </p>
+        <p>About : {{ about}} </p>
+        <input v-model="user" type="text" placeholder="Nhập tên của bạn">
+        <textarea v-model="about" cols="30" rows="10"></textarea>
+        <div class="demo" v-bind:class="objectClass" >
+            <button v-on:click="changeAtive()">Change Active</button>
+            <button v-on:click="changeError">Change Error</button>
+        </div>
+        <div v-bind:style="styleHello">
+            Hello 
+        </div>
+
+    </div>
+</body>
+<script>
+    var a = new Vue({
+        el: '#binding' ,
+        data: {
+            user : "" ,
+            about : "" , 
+            isActive : false ,  
+            isError :false  ,
+            color : '#ff00ff' , 
+            fontSize : 30 , 
+        } , 
+        methods:{
+            changeAtive(){
+                this.isActive = !this.isActive
+            },
+            changeError(){
+                this.isError = ! this.isError 
+            }
+        },
+        computed:{
+            objectClass(){
+                return {
+                    active : this.isActive , 
+                    error : this.isError  ,  
+                }
+            },
+            styleHello(){
+                return{
+                    color : this.color , 
+                    fontSize : this.fontSize +'px' , 
+                    marginTop : '30px ',
+                }
+            },
+        },
+    })
+</script>
+</html>
